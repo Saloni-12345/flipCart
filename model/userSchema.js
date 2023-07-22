@@ -25,10 +25,22 @@ const userSchema = new mongoose.Schema({
     phone:{
         type: Number,
         required: true,
+    },
+    role:{
+        type:String,
+        required: true
+    },
+    cart:{
+        type: Array,
+        required: true
+    },
+    wishlist:{
+      type: Array,
+      required: true
     }
 });
-const productSchema = new mongoose.Schema({
-     id:{
+const allProductSchema = new mongoose.Schema({
+    id:{
         type: String,
         required: true,
     },
@@ -74,72 +86,16 @@ const productSchema = new mongoose.Schema({
         type: String,
     },exchange:{
         type: String,
-    },popularity:{
+    },ram:{
+     type: Number,
+    },
+    popularity:{
         type: Number,
         required: true,
     },offers:{
         type: Array,
         required: true,
     }
-});
-const mobileSchema = new mongoose.Schema({
-    id:{
-       type: String,
-       required: true,
-   },
-    category:{
-       type: String,
-       required: true,
-   } ,
-     brand:{
-       type: String,
-       required: true,
-   }, name:{
-       type: String,
-       required: true,
-   },img:{
-       type: String,
-       required: true,
-   },rating:{
-       type: mongoose.Schema.Types.Double,
-       required: true,
-   }, 
-     ratingDesc:{
-       type: String,
-       required: true,
-   },
-     details:{
-       type: Array,
-       required: true,
-   },price:{
-       type: Number,
-       required: true,
-   },
-     assured:{
-       type: Boolean,
-       required: true,
-   },prevPrice:{
-       type: Number,
-       required: true,
-   }, 
-     discount:{
-       type: Number,
-       required: true,
-   },emi:{
-       type: String,
-   },exchange:{
-       type: String,
-   },ram:{
-    type: Number,
-    required: true,
-   },
-   popularity:{
-       type: Number,
-       required: true,
-   },offers:{
-       type: Array,
-       required: true,
-   }
 })
 const brandSchema = new mongoose.Schema({
   id:{
@@ -180,10 +136,115 @@ const reviewSchema = new mongoose.Schema({
         required: true
     }
 })
+const searchSchema = new mongoose.Schema({
+    id:{
+        type: String,
+        required: true,
+    },
+     category:{
+        type: String,
+        required: true,
+    } ,
+      brand:{
+        type: String,
+        required: true,
+    }, name:{
+        type: String,
+        required: true,
+    },img:{
+        type: String,
+        required: true,
+    },rating:{
+        type: mongoose.Schema.Types.Double,
+        required: true,
+    }, 
+      ratingDesc:{
+        type: String,
+        required: true,
+    },
+      details:{
+        type: Array,
+        required: true,
+    },price:{
+        type: Number,
+        required: true,
+    },
+      assured:{
+        type: Boolean,
+        required: true,
+    },prevPrice:{
+        type: Number,
+        required: true,
+    }, 
+      discount:{
+        type: Number,
+        required: true,
+    },emi:{
+        type: String,
+    },exchange:{
+        type: String,
+    },ram:{
+     type: Number,
+    },
+    popularity:{
+        type: Number,
+        required: true,
+    },offers:{
+        type: Array,
+        required: true,
+    },query:{
+       type: Array,
+       required: true,
+    },
+    count:{
+        type: Number,
+        required: true
+    }
+})
+const logSchema = new mongoose.Schema({
+    firstname:{
+        type: String,
+        required: true,
+    }, lastname:{
+        type: String,
+        required: true,
+    }, username:{
+        type: String,
+        required: true,
+    },email:{
+        type: String,
+        required: true,
+    }, password:{
+        type: String,
+        required: true,
+    }, phone:{
+        type: Number,
+        required: true,
+    }, role:{
+        type: String,
+        required: true,
+    },
+  paths:{
+    type: Array,
+    required: true,
+  },
+  login:{
+    type: String,
+    required: true,
+  },
+  logout:{
+    type: String,
+  },
+  token:{
+    type: String,
+    required: true,
+  }
+})
 const User = mongoose.model('USER', userSchema);
-const Product = mongoose.model('PRODUCT', productSchema);
-const Mobile = mongoose.model('MOBILE', mobileSchema);
 const Brand = mongoose.model('BRAND', brandSchema);
 const Pincode = mongoose.model('PINCODE', pincodeSchema);
 const Review = mongoose.model('REVIEW', reviewSchema);
-module.exports = {User,Product ,Mobile,Brand,Pincode,Review};
+const AllProduct = mongoose.model('ALLPRODUCT', allProductSchema);
+const Search = mongoose.model('SEARCH',searchSchema);
+const Logs = mongoose.model('LOG', logSchema);
+module.exports = {User,Brand,Pincode,Review, AllProduct,Search,Logs};
